@@ -1,27 +1,3 @@
-// Theme Toggle Functionality
-const themeSwitcher = document.getElementById('theme-switcher');
-const body = document.body;
-
-function toggleTheme() {
-    body.classList.toggle('dark-theme');
-    const isDark = body.classList.contains('dark-theme');
-    themeSwitcher.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-}
-
-themeSwitcher.addEventListener('click', toggleTheme);
-
-// Initialize theme on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-theme');
-        themeSwitcher.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-        themeSwitcher.innerHTML = '<i class="fas fa-moon"></i>';
-    }
-});
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -32,7 +8,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Hamburger menu toggle
+// Theme toggle functionality
+const themeToggle = document.querySelector('.theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const body = document.body;
+
+// Load theme from localStorage or default to dark
+const currentTheme = localStorage.getItem('theme') || 'dark';
+body.classList.add(currentTheme + '-theme');
+updateThemeIcon();
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    body.classList.toggle('light-theme');
+    const theme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    updateThemeIcon();
+});
+
+function updateThemeIcon() {
+    if (body.classList.contains('dark-theme')) {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    } else {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+}
+
+// Mobile menu toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
@@ -41,7 +45,15 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
-// Header background change on scroll
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
+});
+
+// Add scroll effect to header
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     if (window.scrollY > 100) {
@@ -51,7 +63,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Animate sections on scroll
+// Animate elements on scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -65,11 +77,28 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Observe all sections
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// Particles.js configuration
+// Skill bars animation
+const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const skillItem = entry.target;
+            const skillFill = skillItem.querySelector('.skill-fill');
+            const skillLevel = skillItem.getAttribute('data-skill');
+            skillFill.style.width = skillLevel + '%';
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.skill-item').forEach(item => {
+    skillObserver.observe(item);
+});
+
+// Particles.js initialization
 particlesJS('particles-js', {
     particles: {
         number: {
@@ -165,7 +194,7 @@ particlesJS('particles-js', {
                 distance: 200,
                 duration: 0.4
             },
-            push: {
+                push: {
                 particles_nb: 4
             },
             remove: {
@@ -175,28 +204,6 @@ particlesJS('particles-js', {
     },
     retina_detect: true
 });
-
-// Skill bars animation
-function animateSkillBars() {
-    const skillItems = document.querySelectorAll('.skill-item');
-    skillItems.forEach(item => {
-        const skillFill = item.querySelector('.skill-fill');
-        const skillLevel = item.getAttribute('data-skill');
-        skillFill.style.width = skillLevel + '%';
-    });
-}
-
-// Trigger skill bars animation when skills section is in view
-const skillsSection = document.querySelector('#skills');
-const skillsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateSkillBars();
-        }
-    });
-}, { threshold: 0.5 });
-
-skillsObserver.observe(skillsSection);
 
 // Modal functionality
 function openModal(projectType) {
@@ -208,32 +215,30 @@ function openModal(projectType) {
     if (projectType === 'banking') {
         content = `
             <h2>Banking Customer Segmentation</h2>
-            <p><strong>Description:</strong> A comprehensive project focused on segmenting banking customers to improve targeted marketing and customer service strategies.</p>
-            <p><strong>Technologies Used:</strong> Python, Pandas, NumPy, Scikit-learn, Tableau, Power BI</p>
+            <p><strong>Description:</strong> A project aiming to segment banking customers through analysis.</p>
+            <p><strong>Technologies Used:</strong> Python (Pandas, SQL), Tableau, Power BI</p>
             <p><strong>Key Features:</strong></p>
             <ul>
-                <li>Data pipeline integration using Python libraries</li>
-                <li>Preprocessing and cleaning of customer data</li>
-                <li>Implementation of multiple clustering algorithms (K-Means, DBSCAN, Hierarchical)</li>
-                <li>Visualization of clusters using PCA and t-SNE</li>
-                <li>Interactive dashboards in Tableau and Power BI</li>
+                <li>Built data pipeline with Python (Pandas, SQL) to integrate and preprocess customer data</li>
+                <li>Applied K-Means, DBSCAN, and Hierarchical Clustering algorithms</li>
+                <li>Visualized results with PCA/t-SNE in Tableau and Power BI</li>
+                <li>Identified distinct customer segments for targeted marketing strategies</li>
             </ul>
-            <p><strong>Impact:</strong> Enabled the bank to identify distinct customer segments, leading to more personalized services and improved customer satisfaction.</p>
+            <p><strong>Outcome:</strong> Successfully segmented customers, enabling personalized banking services and improved customer satisfaction.</p>
         `;
     } else if (projectType === 'sales') {
         content = `
             <h2>Sales Data Cleaning and Analysis</h2>
-            <p><strong>Description:</strong> A data cleaning and analysis project aimed at improving the quality and reliability of sales data for better business insights.</p>
-            <p><strong>Technologies Used:</strong> Python, Pandas, Excel, SQL</p>
+            <p><strong>Description:</strong> Project focused on enhancing sales data quality and analysis for actionable insights.</p>
+            <p><strong>Technologies Used:</strong> Python (Pandas, NumPy), Excel</p>
             <p><strong>Key Features:</strong></p>
             <ul>
-                <li>Identification and removal of duplicate records</li>
-                <li>Standardization of inconsistent data formats</li>
-                <li>Handling of missing values and outliers</li>
-                <li>Validation of data integrity</li>
-                <li>Trend analysis and reporting</li>
+                <li>Cleaned and standardized 1,000+ sales records</li>
+                <li>Removed duplicates and fixed inconsistencies</li>
+                <li>Improved sales trend analysis by reducing reporting errors by 25%</li>
+                <li>Generated comprehensive reports for business decision-making</li>
             </ul>
-            <p><strong>Impact:</strong> Reduced reporting errors by 25%, ensuring more accurate sales forecasting and improved decision-making processes.</p>
+            <p><strong>Outcome:</strong> Enhanced data accuracy and provided reliable insights for sales forecasting and strategy development.</p>
         `;
     }
 
@@ -250,24 +255,81 @@ function closeModal() {
 window.addEventListener('click', (event) => {
     const modal = document.getElementById('project-modal');
     if (event.target === modal) {
-        closeModal();
+        modal.style.display = 'none';
     }
 });
 
-// Typing effect for hero text (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
+// Typing effect for hero text
+const heroText = document.querySelector('#hero p');
+const originalText = heroText.textContent;
+heroText.textContent = '';
+
+let i = 0;
+function typeWriter() {
+    if (i < originalText.length) {
+        heroText.textContent += originalText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
     }
-    type();
 }
 
-// Uncomment to add typing effect to hero title
-// const heroTitle = document.querySelector('.hero-content h1');
-// typeWriter(heroTitle, 'Hello, I\'m Kowshik Gali');
+// Start typing effect after a delay
+setTimeout(typeWriter, 1000);
+
+// Add CSS for animations
+const style = document.createElement('style');
+style.textContent = `
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-theme .nav-links.active {
+        background: rgba(26, 26, 46, 0.95);
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    header.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark-theme header.scrolled {
+        background: rgba(26, 26, 46, 0.98);
+    }
+
+    section.animate {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(style);

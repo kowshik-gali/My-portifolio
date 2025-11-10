@@ -23,9 +23,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="theme-toggle">
-                <button id="theme-switcher" class="theme-btn">
-                    <i class="fas fa-moon"></i>
-                </button>
+                <i class="fas fa-moon" id="theme-icon"></i>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -137,6 +135,16 @@
         </div>
     </section>
 
+    <!-- Modal for Projects -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Content will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
     <section id="internship">
         <div class="container">
             <h2>Internship</h2>
@@ -201,22 +209,10 @@
         <div class="container">
             <h2>Contact</h2>
             <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 6305737029</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:veravenkatakowshikgali@gmail.com">veravenkatakowshikgali@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Nellore, Andhra Pradesh</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/kowshik-gali" target="_blank">LinkedIn Profile</a>
-                </div>
+                <p><i class="fas fa-phone"></i> +91 6305737029</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:veravenkatakowshikgali@gmail.com">veravenkatakowshikgali@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Nellore, Andhra Pradesh</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/kowshik-gali" target="_blank">LinkedIn Profile</a></p>
             </div>
         </div>
     </section>
@@ -224,16 +220,6 @@
     <footer>
         <p>&copy; 2023 Kowshik Gali. All rights reserved.</p>
     </footer>
-
-    <!-- Modal for Projects -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modal-body">
-                <!-- Content will be populated by JS -->
-            </div>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>

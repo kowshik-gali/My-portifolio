@@ -194,7 +194,7 @@ particlesJS('particles-js', {
                 distance: 200,
                 duration: 0.4
             },
-                push: {
+            push: {
                 particles_nb: 4
             },
             remove: {
@@ -225,6 +225,7 @@ function openModal(projectType) {
                 <li>Identified distinct customer segments for targeted marketing strategies</li>
             </ul>
             <p><strong>Outcome:</strong> Successfully segmented customers, enabling personalized banking services and improved customer satisfaction.</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik3008/banking-customer-segmentation-using-python" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
         `;
     } else if (projectType === 'sales') {
         content = `
@@ -239,6 +240,20 @@ function openModal(projectType) {
                 <li>Generated comprehensive reports for business decision-making</li>
             </ul>
             <p><strong>Outcome:</strong> Enhanced data accuracy and provided reliable insights for sales forecasting and strategy development.</p>
+        `;
+    } else if (projectType === 'zomato') {
+        content = `
+            <h2>Zomato EDA & Predictive Analytics Dashboard</h2>
+            <p><strong>Description:</strong> A professional, interactive, and machine-learning-powered web dashboard to analyze and predict restaurant ratings based on the Zomato dataset.</p>
+            <p><strong>Technologies Used:</strong> Python, Dash Bootstrap Components, Plotly, Scikit-Learn, Pandas</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Implemented a beautiful Bootstrap dark-mode UI with dynamic metrics and intuitive filtering.</li>
+                <li>Created advanced data visualizations tracking ratings, voting behaviors, and cost using interactive graphs.</li>
+                <li>Trained a RandomForestRegressor to actively predict what a restaurant's rating would be based on cost, votes, and services.</li>
+                <li>Applied K-Means clustering to discover and visually segment restaurants into distinct tiers representing market gaps.</li>
+            </ul>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik3008/Zomato-EDA-Predictive-Analytics-Dashboard" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
         `;
     }
 

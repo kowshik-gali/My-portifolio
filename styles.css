@@ -323,17 +323,26 @@ body.dark-theme .skill-item p {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    align-items: stretch;
 }
 
 .project-card {
     background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensures cards in the same row match height */
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+    /* Enforces a base height for symmetry */
 }
 
 body.dark-theme .project-card {
@@ -351,12 +360,15 @@ body.dark-theme .project-card {
 }
 
 body.dark-theme .project-card h3 {
-    color: #e0e0e0;
+    color: #fff;
 }
 
 .project-card p {
     color: #666;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    /* This pushes the link to the bottom */
 }
 
 body.dark-theme .project-card p {
@@ -389,13 +401,49 @@ body.dark-theme .project-card p {
 
 .modal-content {
     background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 15px;
+    margin: 2% auto;
+    /* Reduced margin to give more space */
+    padding: 40px;
+    border: none;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    /* Limits height to 90% of screen */
+    overflow-y: auto;
+    /* Adds a scrollbar if content is too long */
+    border-radius: 20px;
     position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+#modal-body h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-right: 40px;
+    /* Prevents overlap with X button */
+}
+
+#modal-body ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.2rem;
+}
+
+#modal-body li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 body.dark-theme .modal-content {
@@ -404,11 +452,15 @@ body.dark-theme .modal-content {
 }
 
 .close {
+    position: absolute;
+    right: 25px;
+    top: 20px;
     color: #aaa;
-    float: right;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
 }
 
 body.dark-theme .close {
@@ -632,6 +684,7 @@ body.dark-theme footer {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

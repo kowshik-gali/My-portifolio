@@ -274,19 +274,19 @@ function openModal(projectType) {
     }
 
     modalBody.innerHTML = content;
-    modal.style.display = 'block';
+    modal.classList.add('active');
 }
 
 function closeModal() {
     const modal = document.getElementById('project-modal');
-    modal.style.display = 'none';
+    modal.classList.remove('active');
 }
 
 // Close modal when clicking outside
 window.addEventListener('click', (event) => {
     const modal = document.getElementById('project-modal');
     if (event.target === modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 });
 

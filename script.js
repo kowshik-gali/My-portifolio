@@ -255,6 +255,22 @@ function openModal(projectType) {
             </ul>
             <p><strong>Repository:</strong> <a href="https://github.com/kowshik3008/Zomato-EDA-Predictive-Analytics-Dashboard" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
         `;
+    } else if (projectType === 'stock_analysis') {
+        content = `
+            <h2>Bank of America Stock Analysis & Forecasting</h2>
+            <p><strong>Description:</strong> A modular Streamlit application providing advanced technical analysis, algorithmic trading backtests, and machine learning price forecasts for Bank of America stock.</p>
+            <p><strong>Technologies Used:</strong> Python, Streamlit, Pandas, Plotly, Scikit-Learn, Statsmodels, XGBoost, TensorFlow (LSTM)</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Exploratory Data Analysis:</strong> Interactive visualization of price trends, moving averages, volatility, and seasonal decomposition.</li>
+                <li><strong>Financial Forecasting:</strong> Multi-model forecasting including ARIMA for time-series, Random Forest/XGBoost for baseline ML, and LSTM Neural Networks for deep learning predictions.</li>
+                <li><strong>Algorithmic Trading:</strong> Backtested a Moving Average Crossover strategy with performance metrics (Return vs B&H, Sharp Ratio, Max Drawdown).</li>
+                <li><strong>Risk Metrics:</strong> Comprehensive risk profile analysis with annualized volatility and drawdown visualizations.</li>
+                <li><strong>Technical Indicators:</strong> Automated calculation of MA, RSI, MACD, and Bollinger Bands.</li>
+            </ul>
+            <p><strong>Outcome:</strong> Created a powerful tool for quantitative researchers to analyze market behavior and test trading hypotheses with data-driven evidence.</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Algorithmic-Financial-Dashboard-BofA-Edition" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
     }
 
     modalBody.innerHTML = content;

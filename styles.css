@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
@@ -339,14 +343,11 @@ body.dark-theme .skill-item p {
     display: flex;
     flex-direction: column;
     flex: 1 1 350px;
-    /* Base width of 350px, can grow/shrink */
     max-width: 400px;
-    /* Prevents giant cards on wide rows */
     height: auto;
     position: relative;
     overflow: hidden;
     min-height: 380px;
-    /* Enforces a base height for symmetry */
 }
 
 body.dark-theme .project-card {
@@ -355,7 +356,7 @@ body.dark-theme .project-card {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .15);
 }
 
 .project-card h3 {
@@ -372,7 +373,6 @@ body.dark-theme .project-card h3 {
     line-height: 1.7;
     margin-bottom: 2rem;
     flex-grow: 1;
-    /* This pushes the link to the bottom */
 }
 
 body.dark-theme .project-card p {
@@ -381,7 +381,7 @@ body.dark-theme .project-card p {
 
 .view-more {
     display: block;
-    margin-top: 1rem;
+    margin-top: auto;
     color: #667eea;
     font-weight: 600;
     text-decoration: none;
@@ -391,41 +391,59 @@ body.dark-theme .project-card p {
     text-decoration: underline;
 }
 
-/* Modal */
+/* Modal Styling */
 .modal {
     display: none;
+    /* Hidden by default */
     position: fixed;
     z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+    /* Shown when .active class is added */
 }
 
 .modal-content {
     background-color: white;
-    margin: 2% auto;
-    /* Reduced margin to give more space */
     padding: 40px;
     border: none;
     width: 90%;
     max-width: 800px;
     max-height: 90vh;
-    /* Limits height to 90% of screen */
     overflow-y: auto;
-    /* Adds a scrollbar if content is too long */
     border-radius: 20px;
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    animation: modalFadeIn 0.3s ease-out;
+    animation: modalFadeIn 0.35s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+body.dark-theme .modal-content {
+    background-color: #2a2a3e;
+    color: #e0e0e0;
 }
 
 #modal-body h2 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     padding-right: 40px;
-    /* Prevents overlap with X button */
 }
 
 #modal-body ul {
@@ -436,23 +454,6 @@ body.dark-theme .project-card p {
 #modal-body li {
     margin-bottom: 12px;
     line-height: 1.5;
-}
-
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-body.dark-theme .modal-content {
-    background-color: #2a2a3e;
-    color: #e0e0e0;
 }
 
 .close {
@@ -471,14 +472,7 @@ body.dark-theme .close {
     color: #e0e0e0;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-}
-
-body.dark-theme .close:hover,
-body.dark-theme .close:focus {
+.close:hover {
     color: #fff;
 }
 

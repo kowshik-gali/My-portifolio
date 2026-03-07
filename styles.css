@@ -322,9 +322,10 @@ body.dark-theme .skill-item p {
 
 /* Projects Section */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2.5rem;
+    justify-content: center;
     align-items: stretch;
 }
 
@@ -337,8 +338,11 @@ body.dark-theme .skill-item p {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    /* Ensures cards in the same row match height */
+    flex: 1 1 350px;
+    /* Base width of 350px, can grow/shrink */
+    max-width: 400px;
+    /* Prevents giant cards on wide rows */
+    height: auto;
     position: relative;
     overflow: hidden;
     min-height: 380px;

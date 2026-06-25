@@ -257,7 +257,7 @@ function openModal(projectType) {
         `;
     } else if (projectType === 'stock_analysis') {
         content = `
-            <h2>Bank of America Stock Analysis & Forecasting</h2>
+            <h2>Bank of America Stock Analysis &amp; Forecasting</h2>
             <p><strong>Description:</strong> A modular Streamlit application providing advanced technical analysis, algorithmic trading backtests, and machine learning price forecasts for Bank of America stock.</p>
             <p><strong>Technologies Used:</strong> Python, Streamlit, Pandas, Plotly, Scikit-Learn, Statsmodels, XGBoost, TensorFlow (LSTM)</p>
             <p><strong>Key Features:</strong></p>
@@ -270,6 +270,23 @@ function openModal(projectType) {
             </ul>
             <p><strong>Outcome:</strong> Created a powerful tool for quantitative researchers to analyze market behavior and test trading hypotheses with data-driven evidence.</p>
             <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Algorithmic-Financial-Dashboard-BofA-Edition" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'sap_ems') {
+        content = `
+            <h2>SAP ABAP Employee Management System (EMS)</h2>
+            <p><strong>Description:</strong> Complete SAP ABAP Employee Management System built on SAP NetWeaver 7.5 / S/4HANA architecture.</p>
+            <p><strong>Technologies Used:</strong> SAP ABAP, Module Pool Programming, ALV Grid Reports, SmartForms, Function Modules, Data Dictionary</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Department Management:</strong> CRUD operations for departments with test data generation</li>
+                <li><strong>Employee Registration/Update/Delete:</strong> Full module pool program with screen painter (SAP GUI)</li>
+                <li><strong>Employee Search ALV Report:</strong> Interactive ALV Grid display with filtering and sorting</li>
+                <li><strong>Salary Management:</strong> Payroll calculation with function modules and validation logic</li>
+                <li><strong>Payslip Generation:</strong> SmartForms-based payslip printing with custom layout</li>
+                <li><strong>Data Dictionary Objects:</strong> Transparent tables, views, lock objects, and structures</li>
+            </ul>
+            <p><strong>Architecture:</strong> 3-Tier Client/Server (Presentation: SAP GUI/ALV, Application: ABAP NetWeaver, Database: SAP HANA/Oracle)</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Employee_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
         `;
     }
 

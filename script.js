@@ -343,22 +343,249 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// Typing effect for hero text
-const heroText = document.querySelector('#hero p');
-const originalText = heroText.textContent;
-heroText.textContent = '';
+// Typing effect for hero text - cycle through multiple taglines
+const heroTaglines = [
+    'Data Analyst & SAP Developer | Transforming Data into Insights',
+    'SAP ABAP Developer | Building Enterprise Solutions on S/4HANA',
+    'Data Analyst & SAP Developer | Turning Complex Data into Actionable Intelligence'
+];
 
-let i = 0;
+let currentTaglineIndex = 0;
+let charIndex = 0;
+const heroText = document.getElementById('hero-tagline');
+
 function typeWriter() {
-    if (i < originalText.length) {
-        heroText.textContent += originalText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
+    if (charIndex < heroTaglines[currentTaglineIndex].length) {
+        heroText.textContent += heroTaglines[currentTaglineIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, 30); // Faster typing speed
+    } else {
+        // Pause at end of tagline, then switch to next
+        setTimeout(() => {
+            heroText.textContent = '';
+            charIndex = 0;
+            currentTaglineIndex = (currentTaglineIndex + 1) % heroTaglines.length;
+            typeWriter();
+        }, 2000);
     }
 }
 
 // Start typing effect after a delay
-setTimeout(typeWriter, 1000);
+setTimeout(typeWriter, 500);
+
+// Project filtering functionality
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+                card.style.display = 'block';
+                setTimeout(() => card.style.opacity = '1', 50);
+            } else {
+                card.style.opacity = '0';
+                setTimeout(() => card.style.display = 'none', 300);
+            }
+        });
+    });
+});
+
+// Scroll spy for active nav highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollY = window.scrollY + 200; // Offset for header
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Modal functionality with fade animation
+function openModal(projectType) {
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
+    const modalContent = modal.querySelector('.modal-content');
+
+    // Reset modal content
+    modalBody.innerHTML = '';
+    modalContent.style.opacity = '0';
+    modalContent.style.transform = 'scale(0.9) translateY(20px)';
+
+    let content = '';
+
+    if (projectType === 'banking') {
+        content = `
+            <h2>Banking Customer Segmentation</h2>
+            <p><strong>Description:</strong> A project aiming to segment banking customers through analysis.</p>
+            <p><strong>Technologies Used:</strong> Python (Pandas, SQL), Tableau, Power BI</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Built data pipeline with Python (Pandas, SQL) to integrate and preprocess customer data</li>
+                <li>Applied K-Means, DBSCAN, and Hierarchical Clustering algorithms</li>
+                <li>Visualized results with PCA/t-SNE in Tableau and Power BI</li>
+                <li>Identified distinct customer segments for targeted marketing strategies</li>
+            </ul>
+            <p><strong>Outcome:</strong> Successfully segmented customers, enabling personalized banking services and improved customer satisfaction.</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik3008/banking-customer-segmentation-using-python" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'sales') {
+        content = `
+            <h2>Sales Data Cleaning and Analysis</h2>
+            <p><strong>Description:</strong> Project focused on enhancing sales data quality and analysis for actionable insights.</p>
+            <p><strong>Technologies Used:</strong> Python (Pandas, NumPy), Excel</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Cleaned and standardized 1,000+ sales records</li>
+                <li>Removed duplicates and fixed inconsistencies</li>
+                <li>Improved sales trend analysis by reducing reporting errors by 25%</li>
+                <li>Generated comprehensive reports for business decision-making</li>
+            </ul>
+            <p><strong>Outcome:</strong> Enhanced data accuracy and provided reliable insights for sales forecasting and strategy development.</p>
+        `;
+    } else if (projectType === 'zomato') {
+        content = `
+            <h2>Zomato EDA & Predictive Analytics Dashboard</h2>
+            <p><strong>Description:</strong> A professional, interactive, and machine-learning-powered web dashboard to analyze and predict restaurant ratings based on the Zomato dataset.</p>
+            <p><strong>Technologies Used:</strong> Python, Dash Bootstrap Components, Plotly, Scikit-Learn, Pandas</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Implemented a beautiful Bootstrap dark-mode UI with dynamic metrics and intuitive filtering.</li>
+                <li>Created advanced data visualizations tracking ratings, voting behaviors, and cost using interactive graphs.</li>
+                <li>Trained a RandomForestRegressor to actively predict what a restaurant's rating would be based on cost, votes, and services.</li>
+                <li>Applied K-Means clustering to discover and visually segment restaurants into distinct tiers representing market gaps.</li>
+            </ul>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik3008/Zomato-EDA-Predictive-Analytics-Dashboard" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'stock_analysis') {
+        content = `
+            <h2>Bank of America Stock Analysis & Forecasting</h2>
+            <p><strong>Description:</strong> A modular Streamlit application providing advanced technical analysis, algorithmic trading backtests, and machine learning price forecasts for Bank of America stock.</p>
+            <p><strong>Technologies Used:</strong> Python, Streamlit, Pandas, Plotly, Scikit-Learn, Statsmodels, XGBoost, TensorFlow (LSTM)</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Exploratory Data Analysis:</strong> Interactive visualization of price trends, moving averages, volatility, and seasonal decomposition.</li>
+                <li><strong>Financial Forecasting:</strong> Multi-model forecasting including ARIMA for time-series, Random Forest/XGBoost for baseline ML, and LSTM Neural Networks for deep learning predictions.</li>
+                <li><strong>Algorithmic Trading:</strong> Backtested a Moving Average Crossover strategy with performance metrics (Return vs B&H, Sharp Ratio, Max Drawdown).</li>
+                <li><strong>Risk Metrics:</strong> Comprehensive risk profile analysis with annualized volatility and drawdown visualizations.</li>
+                <li><strong>Technical Indicators:</strong> Automated calculation of MA, RSI, MACD, and Bollinger Bands.</li>
+            </ul>
+            <p><strong>Outcome:</strong> Created a powerful tool for quantitative researchers to analyze market behavior and test trading hypotheses with data-driven evidence.</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Algorithmic-Financial-Dashboard-BofA-Edition" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'sap_ems') {
+        content = `
+            <h2>SAP ABAP Employee Management System (EMS)</h2>
+            <p><strong>Description:</strong> Complete SAP ABAP Employee Management System built on SAP NetWeaver 7.5 / S/4HANA architecture.</p>
+            <p><strong>Technologies Used:</strong> SAP ABAP, Module Pool Programming, ALV Grid Reports, SmartForms, Function Modules, Data Dictionary</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Department Management:</strong> CRUD operations for departments with test data generation</li>
+                <li><strong>Employee Registration/Update/Delete:</strong> Full module pool program with screen painter (SAP GUI)</li>
+                <li><strong>Employee Search ALV Report:</strong> Interactive ALV Grid display with filtering and sorting</li>
+                <li><strong>Salary Management:</strong> Payroll calculation with function modules and validation logic</li>
+                <li><strong>Payslip Generation:</strong> SmartForms-based payslip printing with custom layout</li>
+                <li><strong>Data Dictionary Objects:</strong> Transparent tables, views, lock objects, and structures</li>
+            </ul>
+            <p><strong>Architecture:</strong> 3-Tier Client/Server (Presentation: SAP GUI/ALV, Application: ABAP NetWeaver, Database: SAP HANA/Oracle)</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Employee_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'sap_ims') {
+        content = `
+            <h2>SAP ABAP Inventory Management System (IMS)</h2>
+            <p><strong>Description:</strong> Enterprise-grade SAP ABAP Inventory Management System built on S/4HANA architecture.</p>
+            <p><strong>Technologies Used:</strong> SAP ABAP, Module Pool Programming, ALV Grid Reports, SmartForms, Function Modules, BDC, Data Dictionary</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Material & Vendor Master:</strong> Complete master data management with BDC upload capability</li>
+                <li><strong>Purchase Order Management:</strong> Create, display, and print POs with SmartForms</li>
+                <li><strong>Goods Receipt (Stock In):</strong> Post goods receipt against POs with validation</li>
+                <li><strong>Goods Issue (Stock Out):</strong> Process stock issues with movement type tracking</li>
+                <li><strong>Warehouse Management:</strong> Multi-warehouse inventory tracking</li>
+                <li><strong>Inventory Reports:</strong> Real-time stock ALV reports with low stock alerts</li>
+                <li><strong>Low Stock Alerts:</strong> Automated alert system for reorder points</li>
+            </ul>
+            <p><strong>Architecture:</strong> 3-Tier (Presentation: SAP GUI/Fiori/ALV, Application: S/4HANA ABAP, Database: SAP HANA)</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Inventory_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'sap_lms') {
+        content = `
+            <h2>SAP ABAP Library Management System (LMS)</h2>
+            <p><strong>Description:</strong> Institutional library automation system built on SAP S/4HANA architecture.</p>
+            <p><strong>Technologies Used:</strong> SAP ABAP, Module Pool Programming, Classical Reports, ALV Grid, SmartForms, Function Modules, Data Dictionary</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Student Registration:</strong> Classical report-based student master data management</li>
+                <li><strong>Book Master Management:</strong> Complete book catalog with search helps</li>
+                <li><strong>Circulation (Issue/Return):</strong> Module pool transactions for book issue and return</li>
+                <li><strong>Fine Calculation:</strong> Automated fine computation with configurable rules</li>
+                <li><strong>Availability Checking:</strong> Real-time book availability with ALV reports</li>
+                <li><strong>Fine Slip Generation:</strong> SmartForms-based fine slip printing</li>
+                <li><strong>Student List Reports:</strong> Comprehensive student listing with filters</li>
+            </ul>
+            <p><strong>Architecture:</strong> 3-Tier (Presentation: SAP GUI/Dynpro/ALV, Application: S/4HANA ABAP, Database: SAP HANA)</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Library_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    }
+
+    modalBody.innerHTML = content;
+    modal.classList.add('active');
+    
+    // Trigger fade-in animation
+    setTimeout(() => {
+        modalContent.style.opacity = '1';
+        modalContent.style.transform = 'scale(1) translateY(0)';
+    }, 10);
+}
+
+function closeModal() {
+    const modal = document.getElementById('project-modal');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Fade out animation
+    modalContent.style.opacity = '0';
+    modalContent.style.transform = 'scale(0.9) translateY(20px)';
+    
+    setTimeout(() => {
+        modal.classList.remove('active');
+    }, 300);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('project-modal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
 
 // Add CSS for animations
 const style = document.createElement('style');

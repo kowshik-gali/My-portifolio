@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kowshik Gali - Data Analyst Portfolio</title>
+    <title>Kowshik Gali - Data Analyst & SAP Developer Portfolio</title>
+    <meta name="description" content="Data Analyst & SAP ABAP Developer portfolio showcasing projects in Python, SQL, Power BI, Tableau, SAP S/4HANA, ABAP, Module Pool, ALV, SmartForms">
+    <meta name="keywords" content="Data Analyst, SAP Developer, SAP ABAP, Python, SQL, Power BI, Tableau, Machine Learning, Data Visualization">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -35,18 +37,21 @@
         </nav>
     </header>
 
-    <section id="hero">
+<section id="hero">
         <div class="hero-content">
             <h1>Hello, I'm Kowshik Gali</h1>
-            <p>Data Analyst &amp; SAP Developer | Transforming Data into Insights</p>
-            <a href="#about" class="cta-btn">Explore My Work</a>
+            <p id="hero-tagline">Data Analyst & SAP Developer | Transforming Data into Insights</p>
+            <div class="hero-buttons">
+                <a href="#about" class="cta-btn">Explore My Work</a>
+                <a href="assets/resume.pdf" class="cta-btn secondary" download>Download Resume</a>
+            </div>
         </div>
         <div class="hero-bg">
             <div class="particles" id="particles-js"></div>
         </div>
     </section>
 
-    <section id="about">
+<section id="about">
         <div class="container">
             <h2>About Me</h2>
             <div class="about-content">
@@ -57,9 +62,33 @@
                         cleaning, preprocessing, statistical analysis, and machine learning, with a proven ability to
                         transform raw datasets into actionable business insights. Strong analytical and problem-solving
                         skills with commitment to data-driven decision-making.</p>
+                    <p>As an <strong>SAP ABAP Developer</strong>, I have designed and built 3 enterprise-grade SAP systems 
+                        (Employee Management, Inventory Management, Library Management) on S/4HANA architecture. 
+                        Expertise in Module Pool Programming, ALV Reports, SmartForms, Function Modules, Data Dictionary (DDIC), 
+                        BDC Data Migration, and OO ABAP. Experience with 3-tier client/server architecture and SAP GUI/Fiori interfaces.</p>
                     <p>Reduced reporting errors by 25% in sales analysis through improved data cleaning and validation.
                         Processed and standardized 1,000+ sales records, ensuring accuracy for trend forecasting.
                         Analyzed and visualized 500+ datasets using Python libraries to uncover key insights.</p>
+
+                    <div class="tech-stack">
+                        <h4>Tech Stack</h4>
+                        <div class="tech-icons">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" title="Pandas">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" title="NumPy">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn" title="Scikit-learn">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="SQL" title="SQL">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg" alt="Power BI" title="Power BI">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg" alt="Tableau" title="Tableau">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg" alt="Streamlit" title="Streamlit">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dash/dash-original.svg" alt="Plotly Dash" title="Plotly Dash">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sap/sap-original.svg" alt="SAP" title="SAP">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" title="HTML">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" title="CSS">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                        </div>
+                    </div>
                 </div>
                 <div class="about-image">
                     <div class="profile-pic">
@@ -205,52 +234,84 @@
     <section id="projects">
         <div class="container">
             <h2>Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="analytics">Data Analytics</button>
+                <button class="filter-btn" data-filter="sap">SAP ABAP</button>
+                <button class="filter-btn" data-filter="ml">ML/AI</button>
+                <button class="filter-btn" data-filter="cv">Computer Vision</button>
+            </div>
             <div class="projects-grid">
-                <div class="project-card" onclick="openModal('banking')">
+                <div class="project-card featured" data-category="analytics" onclick="openModal('banking')">
+                    <div class="project-badge">Featured</div>
                     <h3>Banking Customer Segmentation</h3>
                     <p>A project aiming to segment banking customers through analysis. Built data pipeline with Python
                         (Pandas, SQL) to integrate and preprocess customer data. Applied K-Means, DBSCAN, and
                         Hierarchical Clustering, visualized with PCA/t-SNE in Tableau and Power BI.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <a href="https://github.com/kowshik3008/banking-customer-segmentation-using-python" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('sales')">
+                <div class="project-card" data-category="analytics" onclick="openModal('sales')">
                     <h3>Sales Data Cleaning and Analysis</h3>
                     <p>Project focused on enhancing sales data quality and analysis for actionable insights. Cleaned and
                         standardized 1,000+ sales records, removing duplicates and fixing inconsistencies. Improved
                         sales trend analysis by reducing reporting errors by 25%.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('zomato')">
+                <div class="project-card featured" data-category="ml" onclick="openModal('zomato')">
+                    <div class="project-badge">Featured</div>
                     <h3>Zomato EDA & Predictive Analytics Dashboard</h3>
                     <p>Designed a professional, interactive web dashboard built with Plotly Dash and Scikit-Learn to
                         analyze and predict restaurant ratings based on the Zomato dataset.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <a href="https://github.com/kowshik3008/Zomato-EDA-Predictive-Analytics-Dashboard" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('stock_analysis')">
+                <div class="project-card featured" data-category="ml" onclick="openModal('stock_analysis')">
+                    <div class="project-badge">Featured</div>
                     <h3>Bank of America Stock Analysis & Forecasting</h3>
                     <p>Built a comprehensive algorithmic financial dashboard using Streamlit for technical analysis,
                         trading backtests, and ML-driven price forecasting.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <a href="https://github.com/kowshik-gali/Algorithmic-Financial-Dashboard-BofA-Edition" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('pyronet')">
+                <div class="project-card" data-category="cv" onclick="openModal('pyronet')">
                     <h3>Pyronet — Real-Time Fire Detection System</h3>
                     <p>Developed computer vision based fire detection system using Python and image processing. Implemented real-time detection from images, live video feeds, and CCTV streams. Built weather-based fire prediction module for proactive risk assessment. Created automated alert and notification system for instant user communication.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('sap_ems')">
+                <div class="project-card" data-category="sap" onclick="openModal('sap_ems')">
                     <h3>SAP ABAP Employee Management System (EMS)</h3>
                     <p>Complete SAP ABAP Employee Management System with module pool programming, ALV reports, SmartForms, and function modules. Built on SAP NetWeaver 7.5/S/4HANA architecture.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <a href="https://github.com/kowshik-gali/Employee_Management_System_SAP_ABAP" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('sap_ims')">
+                <div class="project-card" data-category="sap" onclick="openModal('sap_ims')">
                     <h3>SAP ABAP Inventory Management System (IMS)</h3>
                     <p>Enterprise-grade inventory system with material/vendor master data, purchase orders, goods receipt/issue, warehouse tracking, and low stock alerts. Built on S/4HANA.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <a href="https://github.com/kowshik-gali/Inventory_Management_System_SAP_ABAP" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
-                <div class="project-card" onclick="openModal('sap_lms')">
+                <div class="project-card" data-category="sap" onclick="openModal('sap_lms')">
                     <h3>SAP ABAP Library Management System (LMS)</h3>
                     <p>Institutional library automation covering student registration, book management, circulation (issue/return), fine calculation, and availability reporting.</p>
-                    <span class="view-more">Click to view more</span>
+                    <div class="project-links">
+                        <a href="https://github.com/kowshik-gali/Library_Management_System_SAP_ABAP" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <span class="view-more">Click to view more</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -354,6 +415,50 @@
         </div>
     </section>
 
+    <section id="testimonials">
+        <div class="container">
+            <h2>Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Kowshik demonstrated exceptional analytical skills during his internship. He reduced reporting errors by 25% through innovative data cleaning approaches and built predictive models that provided actionable business insights."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-tie"></i></div>
+                        <div class="author-info">
+                            <h4>Supervisor, Codec Technologies</h4>
+                            <span>Data Analytics Internship</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"His ability to bridge data analytics with SAP ABAP development is rare. Kowshik built three complete enterprise systems (EMS, IMS, LMS) demonstrating deep understanding of both domains."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-tie"></i></div>
+                        <div class="author-info">
+                            <h4>Mentor, Skill Sync</h4>
+                            <span>Data Analytics Internship</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Kowshik's Pyronet fire detection system showcased his computer vision expertise. The real-time detection from multiple video sources and weather-based prediction module were technically impressive."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user-tie"></i></div>
+                        <div class="author-info">
+                            <h4>Team Lead, vcodez</h4>
+                            <span>Computer Vision Internship</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="container">
             <h2>Contact</h2>
@@ -370,7 +475,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2023 Kowshik Gali. All rights reserved.</p>
+        <p>&copy; 2026 Kowshik Gali. All rights reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

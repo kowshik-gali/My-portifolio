@@ -288,6 +288,42 @@ function openModal(projectType) {
             <p><strong>Architecture:</strong> 3-Tier Client/Server (Presentation: SAP GUI/ALV, Application: ABAP NetWeaver, Database: SAP HANA/Oracle)</p>
             <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Employee_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
         `;
+    } else if (projectType === 'sap_ims') {
+        content = `
+            <h2>SAP ABAP Inventory Management System (IMS)</h2>
+            <p><strong>Description:</strong> Enterprise-grade SAP ABAP Inventory Management System built on S/4HANA architecture.</p>
+            <p><strong>Technologies Used:</strong> SAP ABAP, Module Pool Programming, ALV Grid Reports, SmartForms, Function Modules, BDC, Data Dictionary</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Material & Vendor Master:</strong> Complete master data management with BDC upload capability</li>
+                <li><strong>Purchase Order Management:</strong> Create, display, and print POs with SmartForms</li>
+                <li><strong>Goods Receipt (Stock In):</strong> Post goods receipt against POs with validation</li>
+                <li><strong>Goods Issue (Stock Out):</strong> Process stock issues with movement type tracking</li>
+                <li><strong>Warehouse Management:</strong> Multi-warehouse inventory tracking</li>
+                <li><strong>Inventory Reports:</strong> Real-time stock ALV reports with low stock alerts</li>
+                <li><strong>Low Stock Alerts:</strong> Automated alert system for reorder points</li>
+            </ul>
+            <p><strong>Architecture:</strong> 3-Tier (Presentation: SAP GUI/Fiori/ALV, Application: S/4HANA ABAP, Database: SAP HANA)</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Inventory_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
+    } else if (projectType === 'sap_lms') {
+        content = `
+            <h2>SAP ABAP Library Management System (LMS)</h2>
+            <p><strong>Description:</strong> Institutional library automation system built on SAP S/4HANA architecture.</p>
+            <p><strong>Technologies Used:</strong> SAP ABAP, Module Pool Programming, Classical Reports, ALV Grid, SmartForms, Function Modules, Data Dictionary</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li><strong>Student Registration:</strong> Classical report-based student master data management</li>
+                <li><strong>Book Master Management:</strong> Complete book catalog with search helps</li>
+                <li><strong>Circulation (Issue/Return):</strong> Module pool transactions for book issue and return</li>
+                <li><strong>Fine Calculation:</strong> Automated fine computation with configurable rules</li>
+                <li><strong>Availability Checking:</strong> Real-time book availability with ALV reports</li>
+                <li><strong>Fine Slip Generation:</strong> SmartForms-based fine slip printing</li>
+                <li><strong>Student List Reports:</strong> Comprehensive student listing with filters</li>
+            </ul>
+            <p><strong>Architecture:</strong> 3-Tier (Presentation: SAP GUI/Dynpro/ALV, Application: S/4HANA ABAP, Database: SAP HANA)</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/kowshik-gali/Library_Management_System_SAP_ABAP" target="_blank" style="color: #4da8da;">View Code on GitHub</a></p>
+        `;
     }
 
     modalBody.innerHTML = content;
